@@ -1,16 +1,20 @@
 <h1>Documents</h1>
 
-<div *ngFor="let doc of documents">
-	<h3>{{ doc.title }}</h3>
+<div class="card" *ngFor="let doc of documents">
+	<img class="card-img-top" src="{{ doc.image_url }}" alt="Card image cap" width="300px">
+		<div class="card-body">
+			<h3 class="card-title">{{ doc.title }}</h3>
 
-	<em>{{ doc.description }}</em>
+			<p class="card-text">{{ doc.description }}</p>
 
-	<div>
-		<a href="{{ doc.file_url }}">Download File</a>
-	</div>
+			<div>
+				<a class="btn btn-primary btn-lg" href="{{ doc.file_url }}">Download File</a>
+			</div>
 
-	<p>{{ doc.image_url }}</p>
-
-	<p>{{ doc.updated_at }}</p>
-	<hr>
+			<p class="card-text">{{ doc.updated_at }}</p>
+		</div>
 </div>
+
+    <p class="">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+ 

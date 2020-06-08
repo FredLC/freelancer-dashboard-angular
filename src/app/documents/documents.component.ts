@@ -1,33 +1,33 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { timer, Observable } from 'rxjs';
 import { Document } from './document';
+import { DocumentService } from './document.service'
 
 @Component({
   selector: 'documents',
   templateUrl: './documents.component.html',
-  styleUrls: ['./documents.component.css']
+  styleUrls: ['./documents.component.css'],
+  providers: [DocumentService]
 })
-export class DocumentsComponent { 
-	documents: Document[] = [
-		{
-			title: 'My Great Doc 1',
-			description: 'asdf',
-			file_url: 'http://google.com',
-			image_url: 'https://images.unsplash.com/photo-1517028267-bcc3eba7474c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1652&q=80',
-			updated_at: '6/6/20'
-		},
-		{
-			title: 'My Great Doc 2',
-			description: 'asdf',
-			file_url: 'http://google.com',
-			image_url: 'https://images.unsplash.com/photo-1517028267-bcc3eba7474c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1652&q=80',
-			updated_at: '6/6/20'
-		},
-		{
-			title: 'My Great Doc 3',
-			description: 'asdf',
-			file_url: 'http://google.com',
-			image_url: 'https://images.unsplash.com/photo-1517028267-bcc3eba7474c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1652&q=80',
-			updated_at: '6/6/20'
-		}
-	]
+export class DocumentsComponent implements OnInit { 
+	documents: Document[];
+	errorMessage: string;
+	mode = "Observable";
+
+	constructor(
+		private documentService: DocumentService
+	) {}
+
+	ngOnInit() {
+		let documentsTimer = timer(0, 5000);
+		documentsTimer.subscribe(() => this.getDocuments());
+	}
+
+	getDocuments() {
+		this.documentService.getDocuments()
+		.subscribe(
+			documents => this.documents = documents,
+			error => this.errorMessage = <any>error
+		);
+	}
 }

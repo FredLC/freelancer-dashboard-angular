@@ -11,7 +11,7 @@
 				<a class="btn btn-primary btn-lg" href="{{ doc.file_url }}">Download File</a>
 			</div>
 
-			<p class="card-text">{{ doc.updated_at }}</p>
+			<p class="card-text mt-3"><span class="text-muted">Last updated: {{ doc.updated_at | date }}</span></p>
 		</div>
 </div>
 

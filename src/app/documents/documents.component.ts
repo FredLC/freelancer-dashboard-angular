@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { timer, Observable } from 'rxjs';
 import { Document } from './document';
-import { DocumentService } from './document.service'
+import { DocumentService } from './document.service';
 
 @Component({
   selector: 'documents',
